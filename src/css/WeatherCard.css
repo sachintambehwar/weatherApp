@@ -29,6 +29,27 @@
   height: 100px;
 }
 
+.favorite-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-left: 8px;
+  font-size: 1.1rem;
+}
+
+.app-container.dark .favorite-btn svg {
+  color: #fff;
+}
+.app-container.dark .favorite-btn.filled svg {
+  color: #ff4d4d;
+}
+
+.favorite-btn:hover svg {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
 .temperature h1 {
   margin: 0;
   font-size: 2.5rem;

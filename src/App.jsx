@@ -13,6 +13,11 @@ const App = () => {
   const { theme, toggleTheme } = useTheme();
   const { forecast, loading, error } = useForecast(city);
 
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem("favoriteCities");
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const handleSearch = () => {
     setCity(inputCity);
   };

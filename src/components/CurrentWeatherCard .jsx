@@ -2,10 +2,14 @@ import { useState } from "react";
 import { useCurrentWeather } from "../hooks/useCurrentWeather";
 import Error from "./Error";
 import "../css/WeatherCard.css";
+import { useFavorites } from "../context/FavoritesContext";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 const CurrentWeatherCard = ({ city }) => {
   const [unit, setUnit] = useState("metric");
   const { weather, loading, error } = useCurrentWeather(city, unit);
+  const { favorites, addFavorite, removeFavorite, isFavorite } = useFavorites();
+  const fav = isFavorite(city);
 
   if (error) return <Error />;
   if (!weather) return null;
@@ -31,12 +35,21 @@ const CurrentWeatherCard = ({ city }) => {
         <h3>
           {name}, {country}
         </h3>
-        <p>
-          {new Date().toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        </p>
+        <div>
+          <p>
+            {new Date().toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </p>
+          <button
+            onClick={() => (fav ? removeFavorite(city) : addFavorite(city))}
+            className="favorite-btn"
+            title={fav ? "Remove from favorites" : "Add to favorites"}
+          >
+            {fav ? <FaHeart color="red" size={18} /> : <FaRegHeart size={18} />}
+          </button>
+        </div>
       </div>
 
       <div className="main-info">
@@ -85,7 +98,6 @@ const CurrentWeatherCard = ({ city }) => {
       )}
 
       <p className="summary">{description}</p>
-
       <div className="details-grid">
         <div>
           <span>Wind</span>
