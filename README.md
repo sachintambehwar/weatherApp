@@ -71,7 +71,7 @@ Clone the Repository:
 bash
 Copy
 Edit
-git clone https://github.com/sachintambeshwar/weather-dashboard.git
+git clone https://github.com/sachintambehwar/weatherApp
 cd weather-dashboard
 Install Dependencies:
 
