@@ -8,7 +8,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 const CurrentWeatherCard = ({ city }) => {
   const [unit, setUnit] = useState("metric");
   const { weather, loading, error } = useCurrentWeather(city, unit);
-  const { favorites, addFavorite, removeFavorite, isFavorite } = useFavorites();
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const fav = isFavorite(city);
 
   if (error) return <Error />;
